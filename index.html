@@ -7,7 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
     <script>
-      let activeMsgIndex = 0;
+      let activeIndex = 0;
+
       function onClickJa() {
         // play sound party.mp3
         const audio = new Audio("party.mp3");
@@ -26,8 +27,10 @@
 
         const yesButton = document.getElementById("yesButton");
         const noButton = document.getElementById("noButton");
+        const calButton = document.getElementById("calButton");
         yesButton.style.display = "none";
         noButton.style.display = "none";
+        calButton.style.display = "block";
 
         const textElement = document.getElementById("text");
         textElement.innerText = "🩷❤️🧡💛💚🩵💙💜🖤🩶🤍🤎";
@@ -72,6 +75,7 @@
         audio.play();
         // get p with id text element
         const textElement = document.getElementById("text");
+        const imageElement = document.getElementById("image");
         // change text
         const messages = [
           "Bist du dir wirklich sicher? 👀",
@@ -82,10 +86,19 @@
           "Ich geh' nicht alleine Essen 🧑🏼‍🍳!",
         ];
 
-        // switch though messages per click but not random
-        textElement.innerText = messages[activeMsgIndex];
-        activeMsgIndex =
-          activeMsgIndex + 1 >= messages.length ? 0 : activeMsgIndex + 1;
+        const gifs = [
+          "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNzhvanJic3NoNmQwc3NmeG4wMWdwaXNpZ3pyY2toczR6aXl5Y3NxMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7SF5scGB2AFrgsXP63/giphy.gif",
+          "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbXFzaHoyemRuN2N3N2xzN2ZmY2lva2N1NTVnaWVxNTJpOWpoYmZ4ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/OPU6wzx8JrHna/giphy.gif",
+          "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzgxMmUwNWg0MHB5ajFqMjZraDJyaGtobDgyNTA5eGMzdDZ3bWhkOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/yoJC2Olx0ekMy2nX7W/giphy.gif",
+          "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2V2Ym1ucDBsdmM2eW1peWlrY2lmcTFpZ2xxcW94MW5mMmt0Y3lzdSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/gfsQffBnuc6e096brx/giphy.gif",
+          "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3NpbWVtd3JicDVhc3I3eWhoYWZhaW43OXcwNTY2YzVjZGpiYm1yOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ePbtplyRUqBCdKwd43/giphy.gif",
+          "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeGN4Z3AzdGl1eDc0dXNmNGRzNHA3Y3AxbnN1OTVhdjRkM2l6OHZrMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l1J9DFe9gXjjZGYMg/giphy.gif",
+        ];
+
+        // switch though messages and gifs per click
+        textElement.innerText = messages[activeIndex];
+        imageElement.src = gifs[activeIndex];
+        activeIndex = activeIndex + 1 >= messages.length ? 0 : activeIndex + 1;
 
         const yesButton = document.getElementById("yesButton");
         //increase size per call by 40%
@@ -129,6 +142,14 @@
       class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded ml-2"
     >
       Nein 😢
+    </button>
+    <button
+      id="calButton"
+      onclick="window.open('event.ics', '_blank')"
+      style="width: 400px; height: 50px; display: none"
+      class="bg-pink-500 hover:bg-pink-400 text-white font-bold py-2 px-4 border-b-4 border-pink-700 hover:border-pink-500 rounded ml-2"
+    >
+      Save the Date 🗓️
     </button>
   </body>
 </html>
