@@ -115,18 +115,28 @@
     />
   </head>
   <body style="display: flex; flex-direction: column; align-items: center">
-    <h1 class="text-4xl font-bold mt-4" style="font-family: 'Protest Riot'">
+    <h1
+      class="text-4xl font-bold mt-4"
+      style="font-family: 'Protest Riot'; text-align: center"
+    >
       Willst du meine Valentina sein?
     </h1>
     <img
       id="image"
-      class="object-contain rounded-lg shadow-lg mt-4 mb-4"
+      class="rounded-lg shadow-lg mt-4 mb-4"
       src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VkZXJpYXNqbGl0cGM1dTN2bGY3amk4MDNqYXR6eDRiY25pMjMzciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oriO6qJiXajN0TyDu/giphy.gif"
       width="400"
+      height="400"
+      style="
+        object-fit: fill;
+        object-position: 50% 50%;
+        width: 400px;
+        height: 400px;
+      "
     />
     <p class="mb-4" id="text" />
     <div style="display: flex; flex-direction: row; width: 400; justify-content:
-    space-between;"">
+    space-between; flex-wrap: wrap;"">
     <button
       id="yesButton"
       onclick="onClickJa()"
