@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>✨💕</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script>
+      let activeMsgIndex = 0;
+      function onClickJa() {
+        // play sound party.mp3
+        const audio = new Audio("party.mp3");
+        audio.play();
+
+        const imageElement = document.getElementById("image");
+        imageElement.src =
+          "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjYxaHVraTdlZ3BsbzlwZXhxOWRycDZlbHU3b2FvYTJxdjlnaHJpNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H9qZamvBs10zByg4xb/giphy.gif";
+
+        const bodyElement = document.querySelector("body");
+        bodyElement.style.backgroundImage =
+          "url('https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDhtaHRld2E2cTFxaHZmMWhlZXE5Nm5hd3FqeGs3cTAybGR2MmZvZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/5xtDarobRW68tNCgjUA/giphy.gif')";
+
+        const headlineElement = document.querySelector("h1");
+        headlineElement.innerText = "Yuhuuuuu!!!";
+
+        const yesButton = document.getElementById("yesButton");
+        const noButton = document.getElementById("noButton");
+        yesButton.style.display = "none";
+        noButton.style.display = "none";
+
+        const textElement = document.getElementById("text");
+        textElement.innerText = "🩷❤️🧡💛💚🩵💙💜🖤🩶🤍🤎";
+
+        const duration = 1200 * 1000;
+        const animationEnd = Date.now() + duration;
+        const defaults = {
+          startVelocity: 30,
+          spread: 360,
+          ticks: 60,
+          zIndex: 0,
+        };
+
+        function randomInRange(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+
+        const interval = setInterval(function () {
+          let timeLeft = animationEnd - Date.now();
+
+          if (timeLeft <= 0) {
+            return clearInterval(interval);
+          }
+
+          var particleCount = 50 * (timeLeft / duration);
+          // since particles fall down, start a bit higher than random
+          confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+          });
+          confetti({
+            ...defaults,
+            particleCount,
+            origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+          });
+        }, 250);
+      }
+      function onClickNein() {
+        // play error.mp3
+        const audio = new Audio("error.mp3");
+        audio.play();
+        // get p with id text element
+        const textElement = document.getElementById("text");
+        // change text
+        const messages = [
+          "Bist du dir wirklich sicher? 👀",
+          "Ich denke du hast dich verklickt! 🙈",
+          "Whoopsie das war der falsche Button! 🫨",
+          "Mimi, der Grüne ist der richtige! ✅",
+          "🥲 Probiers nochmal!",
+          "Ich geh' nicht alleine Essen 🧑🏼‍🍳!",
+        ];
+
+        // switch though messages per click but not random
+        textElement.innerText = messages[activeMsgIndex];
+        activeMsgIndex =
+          activeMsgIndex + 1 >= messages.length ? 0 : activeMsgIndex + 1;
+
+        const yesButton = document.getElementById("yesButton");
+        //increase size per call by 40%
+        yesButton.style.width = yesButton.offsetWidth * 1.4 + "px";
+        yesButton.style.height = yesButton.offsetHeight * 1.4 + "px";
+        yesButton.style.fontSize = yesButton.offsetHeight * 0.6 + "px";
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body style="display: flex; flex-direction: column; align-items: center">
+    <h1 class="text-4xl font-bold mt-4" style="font-family: 'Protest Riot'">
+      Willst du meine Valentina sein?
+    </h1>
+    <img
+      id="image"
+      class="object-contain rounded-lg shadow-lg mt-4 mb-4"
+      src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2VkZXJpYXNqbGl0cGM1dTN2bGY3amk4MDNqYXR6eDRiY25pMjMzciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3oriO6qJiXajN0TyDu/giphy.gif"
+      width="400"
+    />
+    <p class="mb-4" id="text" />
+    <div style="display: flex; flex-direction: row; width: 400; justify-content:
+    space-between;"">
+    <button
+      id="yesButton"
+      onclick="onClickJa()"
+      style="width: 200px; height: 50px"
+      class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mr-2"
+    >
+      Ja 🚀
+    </button>
+    <button
+      id="noButton"
+      onclick="onClickNein()"
+      style="width: 200px; height: 50px"
+      class="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 border-b-4 border-red-700 hover:border-red-500 rounded ml-2"
+    >
+      Nein 😢
+    </button>
+  </body>
+</html>
